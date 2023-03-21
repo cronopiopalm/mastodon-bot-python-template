@@ -42,10 +42,10 @@ def iterate_through():
 		# get input text
 		h=html2text.HTML2Text()
 		h.ignore_links = True
-    # remove html from string. Also remove @bot 
+   		# remove html from string. Also remove @bot 
 		inputtext = h.handle(post["status"]["content"]).replace("@bot","").strip("\n")
     
-    # set up chatgpt context
+   		# set up chatgpt context
 		messages = [{"role": "system", "content": ""},]	
 		token_counter = 0 # count limit context token length: too expensive to onboard long conversation
 
@@ -55,10 +55,10 @@ def iterate_through():
 					for x in mastodon.status_context(post['status']['id'])['ancestors']]
 			for d in context_dict:
 				if d[0]!=my_id:
-          # record user's toot as user
+          			# record user's toot as user
 					messages.append({"role": "user", "content": d[1]},)
 				else:
-          # record bot's toot as assistant
+          			# record bot's toot as assistant
 					messages.append({"role": "assistant", "content": d[1]},)
 			token_counter += len(d[1])
 
