@@ -51,7 +51,8 @@ def iterate_through():
 
 		# load context
 		if post['status']['in_reply_to_id']:
-			context_dict = [[x["account"]["id"], h.handle(x["content"]).replace("@words","").strip("\n")] for x in mastodon.status_context(post['status']['id'])['ancestors']]
+			context_dict = [[x["account"]["id"], h.handle(x["content"]).replace("@words","").strip("\n")] 
+					for x in mastodon.status_context(post['status']['id'])['ancestors']]
 			for d in context_dict:
 				if d[0]!=my_id:
           # record user's toot as user
